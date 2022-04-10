@@ -9,7 +9,7 @@ import {
 import LocationIcon from '../images/LocationIcon';
 import { colors } from '../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTemperatureUnit } from '../redux/actions';
+import { toggleTemperatureUnit } from '../redux/store/actions';
 
 const Header = () => {
   const dispatch = useDispatch();

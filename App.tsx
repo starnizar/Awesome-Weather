@@ -4,7 +4,8 @@ import MainScreen from './src/screen/MainScreen';
 import { colors } from './src/styles/colors';
 import Geolocation from '@react-native-community/geolocation';
 import { useDispatch } from 'react-redux';
-import { setCoords } from './src/redux/actions';
+import { setCoords } from './src/redux/store/actions';
+import { fetchForecast } from './src/redux/saga/app/appActions';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -58,10 +59,7 @@ const App = () => {
         const fetchedCurrentLatitude = JSON.stringify(position.coords.latitude);
 
         dispatch(
-          setCoords({
-            lon: fetchedCurrentLongitude,
-            lat: fetchedCurrentLatitude,
-          }),
+          fetchForecast(fetchedCurrentLongitude, fetchedCurrentLatitude),
         );
 
         // setCurrentLongitude(fetchedCurrentLongitude);
@@ -86,10 +84,7 @@ const App = () => {
         const fetchedCurrentLatitude = JSON.stringify(position.coords.latitude);
 
         dispatch(
-          setCoords({
-            lon: fetchedCurrentLongitude,
-            lat: fetchedCurrentLatitude,
-          }),
+          fetchForecast(fetchedCurrentLongitude, fetchedCurrentLatitude),
         );
         // setCurrentLongitude(fetchedCurrentLongitude);
         // setCurrentLatitude(fetchedCurrentLatitude);
