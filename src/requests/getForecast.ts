@@ -5,7 +5,7 @@ export async function getForecast(lat: string, lon: string) {
   return await fetchRequest(url);
 }
 
-export async function getCoordsByCityName(cityName: string) {
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}`;
+export async function getListOfCities(cityName: string) {
+  const url = `http://api.openweathermap.org/geo/1.0/direct?limit=10&q=${cityName}`;
   return await fetchRequest(url);
 }

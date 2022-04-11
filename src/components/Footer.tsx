@@ -16,7 +16,7 @@ const Footer = () => {
         <View style={styles.quoter}>
           <Text style={styles.quoterName}>Wind</Text>
           <Text style={styles.quoterContent}>
-            {forecast.wind.speed} м/c, {'западный'}
+            {forecast.wind.speed} m/s, {'западный'}
           </Text>
         </View>
 
@@ -47,8 +47,9 @@ export default Footer;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     paddingHorizontal: 50,
   },
   half: {

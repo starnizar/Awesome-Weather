@@ -3,11 +3,14 @@ import { ScrollView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import Forecast from '../components/Forecast';
 import Footer from '../components/Footer';
+import { useSelector } from 'react-redux';
+import CityInput from '../components/CityInput';
 
 const MainScreen: React.FC = () => {
+  const { isCityInputVisible } = useSelector(state => state.app);
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Header />
+      {isCityInputVisible ? <CityInput /> : <Header />}
       <Forecast />
       <Footer />
     </ScrollView>
