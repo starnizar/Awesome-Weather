@@ -20,5 +20,5 @@ function* fetchCityNameListWorker(action) {
 
 export function* fetchForecastWatcher() {
   yield takeLatest(FETCH_FORECAST, fetchForecastWorker);
-  yield takeLatest(FETCH_LIST_OF_CITIES, fetchCityNameListWorker);
+  // yield takeLatest(FETCH_LIST_OF_CITIES, fetchCityNameListWorker);
 }
