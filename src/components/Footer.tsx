@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { colors } from '../styles/colors';
 import { useSelector } from 'react-redux';
+import { findWindDirection } from '../utils/windDirection';
 
 const Footer = () => {
   const { forecast } = useSelector(state => state.app);
@@ -10,13 +11,15 @@ const Footer = () => {
     return <ActivityIndicator color={colors.white} size="large" />;
   }
 
+  const windDirection = findWindDirection(forecast.wind.deg);
+  console.log('DIRECTION', windDirection);
   return (
     <View style={styles.container}>
       <View style={styles.half}>
         <View style={styles.quoter}>
           <Text style={styles.quoterName}>Wind</Text>
           <Text style={styles.quoterContent}>
-            {forecast.wind.speed} m/s, {'западный'}
+            {forecast.wind.speed} m/s, {windDirection}
           </Text>
         </View>
 
