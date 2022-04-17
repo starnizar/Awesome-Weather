@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import Forecast from '../components/Forecast';
 import Footer from '../components/Footer';
-import { useSelector } from 'react-redux';
 import CityInput from '../components/CityInput';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useDispatch } from 'react-redux';
 
 const MainScreen: React.FC = () => {
-  const { isCityInputVisible } = useSelector(state => state.app);
+  const dispatch = useDispatch();
+  const { isCityInputVisible } = useTypedSelector(state => state.app);
+
+  useEffect(() => {}, []);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {isCityInputVisible ? <CityInput /> : <Header />}
