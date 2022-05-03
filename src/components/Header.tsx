@@ -8,16 +8,17 @@ import {
 } from 'react-native';
 import LocationIcon from '../images/LocationIcon';
 import { colors } from '../styles/colors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   toggleCityInput,
   toggleTemperatureUnit,
 } from '../redux/saga/app/actions';
 import { getCurrentLocationForecast } from '../utils/getCurrentLocation';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { forecast, temperatureUnit } = useSelector(state => state.app);
+  const { forecast, temperatureUnit } = useTypedSelector(state => state.app);
 
   if (!forecast) {
     return <ActivityIndicator color={colors.white} size="large" />;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { colors } from '../styles/colors';
-import { useSelector } from 'react-redux';
 import { findWindDirection } from '../utils/windDirection';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const Footer = () => {
-  const { forecast } = useSelector(state => state.app);
+  const { forecast } = useTypedSelector(state => state.app);
 
   if (!forecast) {
     return <ActivityIndicator color={colors.white} size="large" />;

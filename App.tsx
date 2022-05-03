@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MainScreen from './src/screen/MainScreen';
+import Test from './src/screen/Test';
 import { colors } from './src/styles/colors';
 import { useDispatch } from 'react-redux';
 import { getCurrentLocationForecast } from './src/utils/getCurrentLocation';
@@ -21,6 +22,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+      {/*<Test />*/}
       <MainScreen />
     </View>
   );
