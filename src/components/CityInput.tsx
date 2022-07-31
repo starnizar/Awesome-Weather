@@ -15,6 +15,8 @@ import {
   toggleCityInput,
 } from '../redux/saga/app/actions';
 
+// City input component
+
 const CityInput = () => {
   const dispatch = useDispatch();
   const { citiesList } = useSelector(state => state.app);
