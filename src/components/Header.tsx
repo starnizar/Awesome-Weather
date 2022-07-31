@@ -8,19 +8,25 @@ import {
 } from 'react-native';
 import LocationIcon from '../images/LocationIcon';
 import { colors } from '../styles/colors';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleTemperatureUnit } from '../redux/actions';
+import { useDispatch } from 'react-redux';
+import {
+  toggleCityInput,
+  toggleTemperatureUnit,
+} from '../redux/saga/app/actions';
+import { getCurrentLocationForecast } from '../utils/getCurrentLocation';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { lon, lat } = useSelector(state => state.app.coords);
-  const { forecast, temperatureUnit } = useSelector(state => state.app);
+  const { forecast, temperatureUnit } = useTypedSelector(state => state.app);
 
   if (!forecast) {
     return <ActivityIndicator color={colors.white} size="large" />;
   }
 
-  console.log(forecast);
+  const useMyLocationHandler = () => {
+    getCurrentLocationForecast();
+  };
 
   return (
     <View style={styles.header}>
@@ -54,18 +60,19 @@ const Header = () => {
       </View>
 
       <View style={[styles.subHeader, styles.subHeaderBottom]}>
-        <TouchableOpacity style={styles.changeCityButton}>
+        <TouchableOpacity
+          style={styles.changeCityButton}
+          onPress={() => dispatch(toggleCityInput())}>
           <Text style={styles.subHeaderText}>Change city</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.locationButton}>
+        <TouchableOpacity
+          style={styles.locationButton}
+          onPress={useMyLocationHandler}>
           <LocationIcon />
           <Text style={styles.subHeaderText}>My location</Text>
         </TouchableOpacity>
       </View>
-
-      <Text>Longitude: {lon}</Text>
-      <Text>Latitude: {lat}</Text>
     </View>
   );
 };
@@ -74,6 +81,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   header: {
+    flex: 1,
     alignItems: 'center',
   },
   subHeader: {

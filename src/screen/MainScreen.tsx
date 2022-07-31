@@ -3,29 +3,19 @@ import { ScrollView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import Forecast from '../components/Forecast';
 import Footer from '../components/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import { getForecast } from '../requests/getForecast';
-import { setForecast } from '../redux/actions';
+import CityInput from '../components/CityInput';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useDispatch } from 'react-redux';
 
 const MainScreen: React.FC = () => {
   const dispatch = useDispatch();
-  const { lat, lon } = useSelector(state => state.app.coords);
+  const { isCityInputVisible } = useTypedSelector(state => state.app);
 
-  useEffect(() => {
-    if (lat && lon) {
-      getForecast(lat, lon)
-        .then(res => {
-          dispatch(setForecast(res.data));
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  }, [dispatch, lat, lon]);
+  useEffect(() => {}, []);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Header />
+      {isCityInputVisible ? <CityInput /> : <Header />}
       <Forecast />
       <Footer />
     </ScrollView>
