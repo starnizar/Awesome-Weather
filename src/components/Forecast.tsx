@@ -23,6 +23,7 @@ const Forecast = () => {
     <View style={styles.container}>
       <View style={styles.forecast}>
         <WeatherIcon />
+
         <Text style={styles.temperatureNums}>
           {forecast && calcTemperature}
         </Text>
@@ -38,6 +39,7 @@ export default Forecast;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
   },
   forecast: {
